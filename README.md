@@ -18,7 +18,7 @@ The different magnitures measured with the mentioned before sensors are:
 
 ## Data Structure
 
-'''json
+```json
 {
     "device": "rpi-master",
     "mode": "STATION",
@@ -34,4 +34,4 @@ The different magnitures measured with the mentioned before sensors are:
         }
     }
 }
-'''
+```
