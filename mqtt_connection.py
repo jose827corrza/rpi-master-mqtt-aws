@@ -2,9 +2,9 @@ from awsiot import mqtt_connection_builder
 
 MQTT_BROKER = 'a1gtemfhsymp11-ats.iot.us-east-1.amazonaws.com'
 MQTT_PORT = 8883
-MQTT_CERT_PATH = '../certs/device.pem.crt'
-MQTT_KEY_PATH = '../certs/private.pem.key'
-MQTT_CA_PATH = '../certs/Amazon-root-CA-1.pem'
+MQTT_CERT_PATH = './certs/device.pem.crt'
+MQTT_KEY_PATH = './certs/private.pem.key'
+MQTT_CA_PATH = './certs/Amazon-root-CA-1.pem'
 
 # Callback when connection is accidentally lost.
 def on_connection_interrupted(connection, error, **kwargs):

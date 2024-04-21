@@ -13,6 +13,8 @@
 [Ss]cripts
 pyvenv.cfg
 .venv
+
+.DS_Store
 pip-selfcheck.json
 # temporary files which can be created if a process still has a handle open of a deleted file
 .fuse_hidden*
