@@ -28,7 +28,7 @@ The different magnitures measured with the mentioned before sensors are:
             "value": "1023",
             "magnitude": "Pa"
         },
-        "humidity: {
+        "humidity": {
             "value": "80",
             "magnitude": "%"
         }
