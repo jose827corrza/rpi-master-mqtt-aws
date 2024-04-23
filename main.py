@@ -1,21 +1,32 @@
 from mqtt_connection import mqtt_connect, mqtt_disconnect
 from mqtt_basic import pub_to_mqtt_topic
 
-from station import get_hum, get_temp_pressure, get_lux
+from station import  get_temp_pressure, get_lux
 
 from json import dumps
 from time import sleep
 
 def convert_to_station_json(number):
-    print(f"Relative Hum: {get_hum()}")
-    print(f"Relative Temp/Press: {get_temp_pressure()}")
-    print(f"Relative Lux: {get_lux()}")
+    lux = get_lux()
+    temp, press = get_temp_pressure()
+    print(f"Temp {temp}	Press: {press}	Lux: {lux}")
     message = dict()
     message['device'] = 'rpi-master'
     message['mode'] = 'STATION'
     message['signal'] = None
     message['data'] = {
-        'test': number
+        'temperature': {
+            'value': temp,
+            'magnitude': '°C'
+            },
+        'pressure': {
+            'value': press,
+            'magnitude': 'Pa'
+            },
+        'luminity': {
+            'value': lux,
+            'magnitude': 'Lumen'
+            }
         }
     message['currentNumber'] = number
     json_message = dumps(message)
