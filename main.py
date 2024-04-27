@@ -5,8 +5,12 @@ from station import  get_temp_pressure, get_lux
 
 from json import dumps
 from time import sleep
+from apscheduler.schedulers.blocking import BlockingScheduler
+from datetime import datetime
 
-def convert_to_station_json(number):
+scheduler = BlockingScheduler()
+
+def convert_to_station_json():
     lux = get_lux()
     temp, press = get_temp_pressure()
     print(f"Temp {temp}	Press: {press}	Lux: {lux}")
@@ -28,16 +32,28 @@ def convert_to_station_json(number):
             'magnitude': 'Lumen'
             }
         }
-    message['currentNumber'] = number
+#     message['currentNumber'] = number
     json_message = dumps(message)
     return json_message
     
-mqtt_connect()
-number = 0
-while number < 10:
-    payload = convert_to_station_json(number)
+def task():
+    now = datetime.now()
+    str_now = now.strftime("%H:%M:%S")
+    print(f"Desde aca va una hora: {str_now}")
+    mqtt_connect()
+    payload = convert_to_station_json()
     pub_to_mqtt_topic(payload)
-    number+=1
     sleep(1)
+    mqtt_disconnect()
+print("antes del add job")
+scheduler.add_job(task, 'interval', hours = 1)
+scheduler.start()
+# mqtt_connect()
+# number = 0
+# while number < 10:
+#     payload = convert_to_station_json(number)
+#     pub_to_mqtt_topic(payload)
+#     number+=1
+#     sleep(1)
     
-mqtt_disconnect()
+# mqtt_disconnect()
