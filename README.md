@@ -35,3 +35,7 @@ The different magnitures measured with the mentioned before sensors are:
     }
 }
 ```
+
+### To activate virtual environment
+
+> source env/bin/activate
