@@ -1,6 +1,12 @@
+import os
 from awsiot import mqtt_connection_builder
+from dotenv import load_dotenv
 
-MQTT_BROKER = 'a1gtemfhsymp11-ats.iot.us-east-1.amazonaws.com'
+load_dotenv()
+
+
+MQTT_BROKER_SAMPLE = 'bbgtemfhsymp11-ats.iot.us-east-1.amazonaws.com'
+MQTT_BROKER = os.getenv('MQTT_BROKER')
 MQTT_PORT = 8883
 MQTT_CERT_PATH = './certs/device.pem.crt'
 MQTT_KEY_PATH = './certs/private.pem.key'
